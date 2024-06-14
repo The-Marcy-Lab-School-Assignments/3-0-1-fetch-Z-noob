@@ -30,14 +30,64 @@ export const setupPageBasics = (parentEl) => {
     return { statusDiv, usersUl, postsUl, newUserForm, newUserDiv };
 };
 
-export const renderStatus = () => {
-}
-
-export const renderUsers = () => {
+export const renderStatus = (statusDiv, statusInfoObj) => {
+  // const statusDiv = parentEl.querySelector('#status-heading');
+  const h2Element = document.createElement("h2")
+  const pElement = document.createElement("p")
+  const ook = statusInfoObj.ok === true ? "OK" : "FAIL"
+  
+  h2Element.textContent = `Info on - ${statusInfoObj.url}`
+  pElement.textContent = `Status code: ${statusInfoObj.status}, ${ook}!`
+  h2Element.setAttribute("id", "status-heading");
+  pElement.setAttribute("id", "status-code");
+  // h2Element.setAttribute()
+  statusDiv.append(h2Element, pElement)
 };
 
-export const renderPosts = () => {
+export const renderUsers = (usersUl, users) => {
+  usersUl.innerHTML = "";
+
+  users.forEach((user)=> {
+    const buttonElem = document.createElement("button")
+    const liElem = document.createElement("li")
+    
+    buttonElem.textContent = `Load ${user.username}'s posts`
+    buttonElem.setAttribute('data-user-id', `${user.id}`)
+    liElem.setAttribute("class", "user-card");
+
+    liElem.append(buttonElem)
+    usersUl.append(liElem)
+  })
+};
+
+export const renderPosts = (postsUl, posts) => {
+  postsUl.innerHTML = "";
+
+  posts.forEach((post)=> {
+  const liElem = document.createElement("li")
+  const h2Element = document.createElement("h2")
+  const pElement = document.createElement("p")
+    
+  h2Element.textContent = `${post.title}`
+  pElement.textContent = `${post.body}`
+
+  liElem.append(h2Element, pElement)
+  postsUl.append(liElem)
+  })
 }
 
-export const renderNewUser = () => {
+export const renderNewUser = (newUserDiv, newUserInfo) => {
+  newUserDiv.innerHTML = "";
+
+  // newUserInfo.forEach((user)=> {
+
+  const h2Element = document.createElement("h2")
+  const pElement = document.createElement("p")
+    
+  h2Element.textContent = newUserInfo.username
+  pElement.textContent = newUserInfo.email
+
+  newUserDiv.append(h2Element, pElement)
+
+  
 }

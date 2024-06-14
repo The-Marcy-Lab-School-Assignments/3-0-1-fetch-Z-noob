@@ -1,4 +1,4 @@
-const userUrl = 'https://jsonplaceholder.typicode.com/users'
+// const userUrl = 'https://jsonplaceholder.typicode.com/users'
 
 export const checkResponseStatus = () => {
   return fetch(`https://jsonplaceholder.typicode.com/users`)
@@ -57,5 +57,6 @@ export const createNewUser = (newUserData) => {
   })
   .then((responseData) => {
       return responseData;
-  })
+  }).catch((err) =>
+  console.log(err.message))
 }
